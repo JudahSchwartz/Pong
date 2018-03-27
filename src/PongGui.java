@@ -138,6 +138,7 @@ class PongPanel extends JPanel //implements Runnable
         rPos = lPos = 450;
         x = 200; y = 500;
         dx = dy = 10;
+        score = 0;
     }
 
 //    public void changePosValues() {
@@ -228,10 +229,14 @@ class PongPanel extends JPanel //implements Runnable
                 }
                 if (x < -(2 * ballRadius) || x > 1500)//the ball went out of bounds
                 {
+
                     if(scoreBoard.isHighScore(score))
                     {
-                        System.out.println("HIGH SCO    eRE");
-                        String name = JOptionPane.showInputDialog(null,"What is your name?");
+                        String name = JOptionPane.showInputDialog(null,"What is your name? 3 charachters or less.");
+                        while(name.length()>3)
+                        {
+                            name = JOptionPane.showInputDialog("Name must be 3 characters or less. Please try again.");
+                        }
                         scoreBoard.addScore(score,name);
                     }
                     scoreBoard.display(PongPanel.this);
